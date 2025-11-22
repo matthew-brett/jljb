@@ -6,3 +6,5 @@ __pycache__/
 *.pyc
 *.orig
 ~*
+_output/
+.jupyterlite.doit.db

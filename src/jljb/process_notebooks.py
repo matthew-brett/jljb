@@ -354,21 +354,6 @@ def process_notebooks(
         jupytext.write(nb, out_path)
 
 
-def get_parser():
-    parser = ArgumentParser(
-        description=__doc__,  # Usage from docstring
-        formatter_class=RawDescriptionHelpFormatter,
-    )
-    parser.add_argument(
-        "output_dir", help="Directory to which we will output notebooks"
-    )
-    parser.add_argument(
-        "--config", default="_config.yml",
-        help="Jupyter Book YaML configuration file"
-    )
-    return parser
-
-
 def load_config(config_path):
     config_path = Path(config_path).resolve()
     with config_path.open("rt") as fobj:
@@ -386,8 +371,26 @@ def load_config(config_path):
     return config
 
 
-def write_proc_nbs(config_dir, output_dir):
-    config = load_config(Path(config_dir))
+def get_parser():
+    parser = ArgumentParser(
+        description=__doc__,  # Usage from docstring
+        formatter_class=RawDescriptionHelpFormatter,
+    )
+    parser.add_argument(
+        "output_dir", help="Directory to which we will output notebooks"
+    )
+    parser.add_argument(
+        "--config", default="_config.yml",
+        help="Jupyter Book YaML configuration file"
+    )
+    parser.add_argument(
+        "--input-dir",
+        help="Input directory (default is directory of _config.yml file)"
+    )
+    return parser
+
+
+def write_proc_nbs(config, output_dir):
     out_path = Path(output_dir)
     out_path.mkdir(parents=True, exist_ok=True)
     process_notebooks(config, out_path)
@@ -395,10 +398,14 @@ def write_proc_nbs(config_dir, output_dir):
         _JL_JSON_FMT.format(language="python"))
 
 
+
 def main():
     parser = get_parser()
     args = parser.parse_args()
-    write_proc_nbs(args.config, args.output_dir)
+    config = load_config(Path(args.config))
+    if args.input_dir:
+        config['input_dir'] = Path(args.input_dir)
+    write_proc_nbs(config, args.output_dir)
 
 
 if __name__ == "__main__":

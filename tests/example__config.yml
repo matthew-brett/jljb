@@ -134,7 +134,7 @@ redirection:
     # data-types/Ranges: ../arrays/Ranges
 
 jupyterlite:
-  in_nb_ext: .md
+  in_nb_ext: .Rmd
   out_nb_ext: .ipynb
   in_nb_fmt: "myst"
   remove_remove: true
