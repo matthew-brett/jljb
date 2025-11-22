@@ -8,3 +8,4 @@ __pycache__/
 ~*
 _output/
 .jupyterlite.doit.db
+dist/
