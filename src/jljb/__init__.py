@@ -1,4 +1,4 @@
 """ JupyterLite for Jupyter Book processing
 """
 
-__version__ = '0.1a1'
+__version__ = '0.1a2'

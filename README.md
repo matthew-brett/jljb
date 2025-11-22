@@ -40,8 +40,9 @@ the `_config.yml` file as above, and have a `Makefile` target of form:
 
 ```makefile
 jl:
-	# Jupyter-lite files for book build.
+    # Jupyter-lite files for book build.
     # Install specified requirements for built JupyterLite site.
-	$(PIP_INSTALL_CMD) -r jl-build-requirements.txt
-	jljb-write-dir $(BUILD_DIR)/interact data images --jl-tmp $(JL_DIR)
+    $(PIP_INSTALL_CMD) -r jl-build-requirements.txt
+    # data and images are directories that should be copied into JL output.
+    jljb-write-dir $(BUILD_DIR)/interact data images --jl-tmp $(JL_DIR)
 ```
