@@ -34,6 +34,7 @@ requires = [
     'jupytext',
     'jupyterlite-core',
     'jupyterlite-pyodide-kernel',
+    'jupyterlab_server',
     'sphinx',
     'myst_parser',
     'linkify-it-py'
