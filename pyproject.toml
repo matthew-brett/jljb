@@ -1,0 +1,44 @@
+[build-system]
+requires = ["flit_core >=2,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.metadata]
+module = "jljb"
+author = "Matthew Brett"
+author-email = "matthew.brett@gmail.com"
+home-page = "https://github.com/matthew-brett/jljb"
+classifiers = ["License :: OSI Approved :: BSD License",
+               "Programming Language :: Python :: 3",
+               'Development Status :: 3 - Alpha',
+               'Environment :: Console',
+               'Intended Audience :: Developers',
+               'Intended Audience :: Science/Research',
+               'License :: OSI Approved :: BSD License',
+               'Programming Language :: Python :: 3',
+               'Programming Language :: Python :: 3.6',
+               'Programming Language :: Python :: 3.7',
+               'Programming Language :: Python :: 3.8',
+               'Programming Language :: Python :: 3.9',
+               'Programming Language :: Python :: 3.10',
+               'Programming Language :: Python :: 3.11',
+               'Programming Language :: Python :: 3.12',
+               'Programming Language :: Python :: 3.13',
+               'Topic :: Scientific/Engineering',
+               'Operating System :: Microsoft :: Windows',
+               'Operating System :: POSIX',
+               'Operating System :: Unix',
+               'Operating System :: MacOS']
+description-file="README.md"
+# Check against requirements.txt
+requires = [
+    'jupytext',
+    'jupyterlite-core',
+    'jupyterlite-pyodide-kernel',
+    'sphinx',
+    'myst_parser',
+    'linkify-it-py'
+]
+requires-python=">=3.8"
+
+[tool.flit.scripts]
+jljb-write-dir = "jljb.make_jl_dir:main"
