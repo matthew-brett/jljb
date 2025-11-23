@@ -139,3 +139,8 @@ Some text.
 
 More text."""
     assert exp == out
+
+
+def test_load_config():
+    # Test input directory correctly detected.
+    assert False
