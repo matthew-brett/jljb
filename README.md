@@ -7,8 +7,8 @@ The module provides the executable `jljb-write-dir`.  See the help for that comm
 
 That command will:
 
-* Look for suitable `_config.yml` configuration in your specified
-  configuration directory (defaulting to current directory).
+* Look for suitable `_config.yml` configuration in the current directory, or
+  at a location you specify.
 * It then looks in the configuration for a `jupyterlite` section, and within
   that section looks for these values (default if not specified):
 
@@ -28,12 +28,12 @@ That command will:
   * Filters:
       * Note and admonition markers (if `proc_admonitions` is True)
       * Exercise markers (see
-        [sphinx_exercise](https://ebp-sphinx-exercise.readthedocs.io).
+        [sphinx_exercise](https://ebp-sphinx-exercise.readthedocs.io)).
       * Solution blocks for exercises.
       * Cells marked with [`remove-cell`
         tag](https://jupyterbook.org/v1/interactive/hiding.html#removing-code-cell-content).
   * Writes notebooks to output directory.
-  * Writes JSON jupyterlite file.
+  * Writes JSON JupyterLite file.
 
 The typical way to use this module / command is to write your settings into
 the `_config.yml` file as above, and have a `Makefile` target of form:
