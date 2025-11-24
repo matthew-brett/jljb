@@ -57,7 +57,7 @@ def get_parser():
         help="Jupyter Book YaML configuration file"
     )
     parser.add_argument(
-        '--input_dir',
+        '--input-dir',
         help=("Input directory containing notebooks "
               "(default is directory of _config.yml file)"))
     return parser
