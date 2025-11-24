@@ -358,10 +358,10 @@ def load_config(config_path):
     config_path = Path(config_path).resolve()
     with config_path.open("rt") as fobj:
         config = yaml.safe_load(fobj)
+    # Allow empty config.
+    config = {} if config is None else config
     # Post-processing.
-    config["input_dir"] = Path(
-        config.get("repository", {}).get("path_to_book", config_path.parent)
-    )
+    config["input_dir"] = config_path.parent
     config["base_path"] = urlparse(config.get("html", {}).get("baseurl", "")).path
     config["exclude_patterns"] = config.get("exclude_patterns", [])
     config["exclude_patterns"].append("_build")

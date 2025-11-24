@@ -1,8 +1,9 @@
 """Test notebook parsing"""
 
 from copy import deepcopy
-import sys
 from pathlib import Path
+import shutil
+import sys
 
 import jupytext
 
@@ -141,6 +142,21 @@ More text."""
     assert exp == out
 
 
-def test_load_config():
+def test_load_config(tmp_path):
     # Test input directory correctly detected.
-    assert False
+    eg_config_pth = HERE / 'example__config.yml'
+    # Default comes from parent of config file.
+    eg_config = pn.load_config(eg_config_pth)
+    assert eg_config['input_dir'] == eg_config_pth.parent
+    assert eg_config['jupyterlite']['in_nb_ext'] == '.Rmd'
+    tmp_eg_pth = tmp_path / 'displaced_config.yml'
+    shutil.copyfile(eg_config_pth, tmp_eg_pth)
+    eg_config = pn.load_config(tmp_eg_pth)
+    assert eg_config['input_dir'] == tmp_path
+    assert eg_config['jupyterlite']['in_nb_ext'] == '.Rmd'
+    # Empty file gives defaults.
+    empty_pth = tmp_path / 'empty_config.yml'
+    empty_pth.write_text('# Comment')
+    eg_config = pn.load_config(empty_pth)
+    assert eg_config['input_dir'] == tmp_path
+    assert eg_config['jupyterlite']['in_nb_ext'] == '.md'
